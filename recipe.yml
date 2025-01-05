@@ -1,5 +1,5 @@
 name: Vanilla Desktop Nvidia
-id: nvidia
+id: mk-nvidia
 stages:
 - id: build
   base: ghcr.io/vanilla-os/desktop:dev
@@ -18,6 +18,13 @@ stages:
     commands:
     - lpkg --unlock
     - apt-get update
+    
+  - name: install-kernel-rt
+    type: apt
+    source:
+      packages:
+      - linux-image-rt-amd64
+      - linux-headers-rt-amd64
 
   - name: install-nvidia
     type: apt
